@@ -56,8 +56,12 @@
 								</xsl:choose>
 							</td>
 						</tr>
-
 					</xsl:for-each>
+					<tr>
+						<td colspan="4">Average price</td>
+						<td>DKR</td>
+						<td><xsl:value-of select="sum(car/price)"/></td>
+					</tr>
 				</tabel>
 				
 			</body>
