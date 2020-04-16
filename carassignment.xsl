@@ -16,11 +16,21 @@
 			<head>
 				<title>Cars</title>
 				<meta charset="utf-8"/>
+				<style>
+					h1 {
+						text-align: center;
+					}
+					td, th { 
+						padding: 16px; 
+						outline: 1px solid;
+						text-align: center;
+					}
+				</style>
 			</head>
 			<body>
-			<h1 style="text-align: center;">Nice cars</h1>
+			<h1>Nice cars</h1>
 				<tabel>
-					<tr style="outline: 1px solid;">
+					<tr>
 						<th>Maker</th>
 						<th>Model</th>
 						<th>Year</th>
@@ -31,7 +41,7 @@
 					</tr>
 					<xsl:for-each select="car">
 					<xsl:sort select="@manufacturer"/>
-						<tr style="outline: 1px solid;">
+						<tr>
 							<td><xsl:value-of select="@manufacturer"/></td>
 							<td><xsl:value-of select="@model"/></td>
 							<td><xsl:value-of select="@year"/></td>
@@ -40,24 +50,19 @@
 								<xsl:attribute name="bgcolor"><xsl:value-of select="color"/> </xsl:attribute>
 							</td>
 							<td><xsl:value-of select="price"/></td>
-							<td>
-								<xsl:for-each select="car/dealersecurity">
-									
-								</xsl:for-each>
+							<td style="text-align: center;">
+								<xsl:choose>
+									<xsl:when test="dealersecurity[@buyback='yes']">&#10004;</xsl:when>
+								</xsl:choose>
 							</td>
 						</tr>
 
 					</xsl:for-each>
 				</tabel>
+				
 			</body>
 		</html>
 	</xsl:template>
-	
-	<xsl:template match="car/dealersecurity">
-    <xsl:choose>
-      <xsl:when test="@buyback='yes'">&#10004;</xsl:when>
-    </xsl:choose>
-  </xsl:template>
 
 
 </xsl:stylesheet>
